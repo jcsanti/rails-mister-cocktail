@@ -9,9 +9,9 @@ require 'json'
 require 'open-uri'
 require "rest-client"
 #http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
-response = RestClient.get "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail"
+response = RestClient.get "http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 repos = JSON.parse(response)
 # p repos["drinks"]
 # p repos["drinks"][0]["strIngredient1"]
 # repos["drinks"].each { |i| puts i["strIngredient1"].class }
-repos["drinks"].each { |i| Cocktail.create(name: i["strDrink"]) }
+repos["drinks"].each { |i| Cocktail.create(name: i["strIngredient1"]) }
