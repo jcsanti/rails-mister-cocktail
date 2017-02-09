@@ -14,4 +14,4 @@ repos = JSON.parse(response)
 # p repos["drinks"]
 # p repos["drinks"][0]["strIngredient1"]
 # repos["drinks"].each { |i| puts i["strIngredient1"].class }
-repos["drinks"].each { |i| Cocktail.create(name: i["strIngredient1"]) }
+repos["drinks"].each { |i| Ingredient.create(name: i["strIngredient1"]) }
