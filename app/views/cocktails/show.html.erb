@@ -1,0 +1,16 @@
+<h2><strong><%= @cocktail.name %></strong></h2>
+<h3>Ingredients: </h3>
+<% @cocktail.doses.each do |dose| %>
+  <ul>
+    <li><%= Ingredient.find(dose.ingredient).name %>, <%= dose.description %>, <%= link_to "delete", cocktail_dose_path(@cocktail, dose), method: :delete %></li>
+  </ul>
+<% end %>
+<div class="padded">
+  <h3>Add a new ingredient with the corresponding dose</h3>
+  <%= simple_form_for ([@cocktail, @dose]) do |f| %>
+    <%= f.association :ingredient, collection: Ingredient.order(:name), prompt: "Choose an ingredient" %>
+    <%= f.input :description %>
+    <%= f.submit "Add Ingredient with Dose)", class: "btn btn-danger" %>
+    <%= link_to "Back to cocktails' list", cocktails_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
